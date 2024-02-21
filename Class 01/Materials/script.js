@@ -66,7 +66,7 @@
 // References
 // const original = new Student("Niko", "Nikic", 18);
 // const copy = { ...original }; // ES6
-// // const copy = new Object({}, original);
+// // const copy = Object.assign({}, original);
 
 // original.displayInfo();
 // copy.displayInfo();
