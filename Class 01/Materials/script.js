@@ -1,3 +1,4 @@
+// *** OBJECTS ***
 // I way
 
 // const student = {
@@ -65,8 +66,9 @@
 
 // References
 // const original = new Student("Niko", "Nikic", 18);
-// const copy = { ...original }; // ES6
-// // const copy = Object.assign({}, original);
+// // const copy = original; // objects are copied by reference
+// const copy = { ...original }; // ES6, losing reference
+// // const copy = Object.assign({}, original);// another way of losing reference
 
 // original.displayInfo();
 // copy.displayInfo();
@@ -77,13 +79,13 @@
 
 // Exercise 1
 // function Student(firstName, lastName, age, email) {
-//   // "18"
 //   this.firstName = firstName || "---";
 //   this.lastName = lastName || "---";
-//   this.age = Number(age) || 0;
+//   this.age = Number(age) || 0; // "18"
 //   this.email = email || "no email";
 // }
 
+// Exercise
 // const database = [];
 
 // const btnAdd = document.getElementById("btnAdd");
@@ -128,7 +130,7 @@
 //   }
 // };
 
-// Arrays
+// *** ARRAYS ***
 // const numbers = [12, -2, 10];
 // delete numbers[1];// [12, undefined, 10]
 
@@ -149,7 +151,7 @@
 // numbers.shift();
 // console.log('array after shift', numbers);
 
-// Loops
+// *** LOOPS ***
 // while
 // let i = 1;
 // while (i <= 5) {
@@ -160,7 +162,7 @@
 // // 5, 7 , 100, -49, 0
 // let broj = 0; // undefined
 // do {
-//   broj = Number(prompt("Unesite broj")); //9
+//   broj = Number(prompt("Enter a number")); //9
 // } while (broj !== 0);
 
 // for
@@ -185,7 +187,7 @@
 //   };
 // }
 
-// const students = [new Student("Aida", "P"), new Student("Miroslav", "D")];
+// const students = [new Student("Aida", "P"), new Student("Miroslav", "P")];
 
 // // for (let element of students) {
 // //   element.getFullName();
@@ -220,6 +222,7 @@
 
 // console.log(array);
 
+// Exercise
 let test = [
   true,
   false,
