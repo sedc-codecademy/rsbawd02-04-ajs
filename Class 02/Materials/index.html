@@ -1,14 +1,42 @@
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
     <title>Index</title>
 </head>
 
 <body>
     <script src="script.js" defer></script>
+
+    <div class="container py-3">
+
+        <div class="row">
+            <h1 id="title" class="text-center py-2" name="heading">Here goes title</h1>
+        </div>
+
+        <div class="row">
+            <h3 name="heading">Some popular Java Script libraries and frameworks are: </h3>
+            <ul class="list-group" id="jsList">
+                <li class="list-group-item">Angular</li>
+                <li class="list-group-item">React</li>
+                <li class="list-group-item">Vue js</li>
+            </ul>
+        </div>
+
+        <div class="row py-3">
+            <div class="input-group input-group-lg ps-0">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Enter your favorite JS framework</span>
+                <input type="text" class="form-control" id="newItemInput">
+                <button type="button" class="btn btn-success" id="saveBtn">Save</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 
