@@ -1,96 +1,146 @@
-console.log("We are live!")
+// const addBtn = document.getElementById("addBtn");
+// const namesArray = [];
 
-// Anonymous functions
-let func1 = function() { console.log("Hello")};
-func1();
-let array = [2, 4, 5, function(){ return 2 + 5 - 7 }];
-console.log(array);
-console.log(array[3]());
+// function onAddClicked() {
+//   const newName = prompt("Enter a name");
 
-// Arrow functions
-let someResult = num => num + 10;
-console.log(someResult(25));
-let sumFunc = (num1, num2) => num1 + num2;
-console.log(sumFunc(25, 5));
+//   namesArray.push(newName);
+//   console.log("names array => ", namesArray);
+// }
 
-let sumFunc1 = (num1, num2) => {
-  let result = num1 + num2;
-  console.log(`The result is: ${result}`)
-  return result;
-};
-console.log(sumFunc1(22, 5));
+// console.log("niz => ", namesArray);//[]
 
-let randomFunc = () => console.log("Hey guys!");
-randomFunc();
+// addBtn.addEventListener("click", onAddClicked);
 
-// Self Invoked functions
-let func = () => {
-    let result = 5;
-    console.log(result);
-};
+// function getFullName(fName, lName) {
+//   // parameters
+//   return `${fName} ${lName}`;
+// }
 
-func();
+// function validateEmail(email) { // aida@gmail.com
+//   return email.includes("@");
+// }
 
-let result = 5;
-console.log(result);
+// const fullName = getFullName("Milica", "Dj."); // arguments
+// console.log(fullName);
 
-result = 10;
+// function displayStudentInfo(student) {
+//   console.log("Student", getFullName(student.firstName, student.lastName));
+//   console.log("Age", student.age);
+// }
 
-(() => {
-    let result = 5;
-    console.log(result);
-})();
+// console.log(getFullName("Tamara", "D."));
 
-(function(num1, num2) {
-    console.log(num1 + num2);
-})(2, 5);
+// const obj = {
+//   firstName: "Aida",
+//   lastName: "P",
+//   age: 18,
+// };
+// displayStudentInfo(obj);
 
-let result2 = (function(num1, num2) {
-    return num1 + num2;
-})(7, 5);
-console.log(result2);
+// anonymous functions
+// const getFullName = function (fName, lName) {
+//   return `${fName} ${lName}`;
+// };
 
-function sum(num1, num2){
-  console.log(num1 + num2);
-}
+// getFullName("aaa", "vbbb");
 
-sum((function suma(num1, num2) {
-  return num1 + num2;
-})(7, 5), 5)
+// addBtn.addEventListener("click", function () {
+//   console.log("clicked on button");
+// });
+
+// anonymous arrow functions
+// const getSum = (num1, num2) => {
+//   console.log("Sum", num1 + num2);
+// };
+
+// addBtn.addEventListener("click", () => {
+//   console.log("clicked!!");
+// });
+
+// getSum(3, 4);
+
+// function validateEmail(email) {
+//   return email.includes("@");
+// }
+
+// const validateEmail2 = (email) => {
+//     return email.includes("@");
+// }
+
+// const validateEmail3 = (email) => email.includes("@");
+
+// const myEmail = 'aida.pirusic@outlook.com';
+// console.log('validateEmail', validateEmail(myEmail));
+// console.log('validateEmail2', validateEmail2(myEmail));
+// console.log('validateEmail3', validateEmail3(myEmail));
 
 // Scope
-// var y = 5;
-// var y = 6;
-// console.log(y);
-let x = 5;
-x = 6;
-console.log(x);
+// local scope (function scope)
 
-let ten =  10; // Global scope
-function sumPlusOne(num1, num2){
-	let one =  1; // Function sumPlusOne scope
-    console.log(num1 + num2 + one);
-	function add5(number){
-        console.log(one);
-        let insideFunction = 100;
-		console.log(number +  5); // Function add5 scope
-    };
-    //console.log(insideFunction); // WILL NOT WORK
-	add5(one);
-	function add10(number){
-		console.log(number +  ten); // Function add10 scope
-	};
-	add10(ten);
-}
-sumPlusOne(ten,7);
+// function generateFullName(fName, lName) {
+//     var fullName = `${fName} ${lName}`;
+//     console.log(fullName);
+// }
 
-// Recursion
-function sumTo(num) {
-  if(num === 0) {
-      return 0
+// console.log(fullName);
+
+// block scope
+
+// {
+//   // bh tax calculation
+//   var tax = 17;
+// }
+
+// {
+//   // rom tax calculation
+//   var tax = 23;
+// }
+
+// tax = 22;
+
+// {
+//     let tax = 17;
+// }
+
+// console.log(tax);
+
+// Hoisting
+
+// myFunction();
+
+// function myFunction () {
+//     console.log('test');
+// }
+
+// // variables
+// console.log(test);
+// var test = 12;
+
+
+// exercise 1
+const countDigits = (number) => Math.abs(number).toString().length;
+
+const isEvenOrOdd = (number) => (number % 2 === 0 ? "Even" : "Odd");
+
+const isPositiveOrNegative = (number) => {
+  // 0
+  if (number > 0) {
+    return "Positive";
   }
-  return num + sumTo(num - 1)
-}
 
-// With an arrow function ( shorter )
-let findSumTo = num => num === 0 ? 0 : num + findSumTo(--num);
+  if (number < 0) {
+    return "Negative";
+  }
+  return "Zero";
+};
+
+const getNumberStats = (number) => {
+  const numDigits = countDigits(number);
+  const evenOrOdd = isEvenOrOdd(number);
+  const posOrNeg = isPositiveOrNegative(number);
+
+  console.log(`${numDigits} Digits, ${evenOrOdd}, ${posOrNeg}`);
+};
+
+getNumberStats(-25);
