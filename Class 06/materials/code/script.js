@@ -1,58 +1,40 @@
-console.log("first");
-setTimeout(() => {
-  console.log("this happens after 3 seconds!");
-}, 0);
-console.log("last");
+//
 
-let handle = setInterval(() => {
-  //alert("HAOS!");
-  console.log("HEY");
-}, 2000);
-document.querySelector("button").addEventListener("click", () => {
-  clearInterval(handle);
+const myButton = document.getElementById("myButton");
+const ajaxButton = document.getElementById("ajaxButton");
+
+myButton.addEventListener("click", function () {
+  console.log("clicked!!!");
 });
 
-function first() {
-  setTimeout(() => console.log("First thing"), 1000);
-  console.log("Random thing!");
-}
-function second() {
-  console.log("Second thing!");
-}
-first();
-second();
-
-function firstFunction(callback) {
-  setTimeout(() => {
-    console.log("First thing");
-    callback();
-  }, 1000);
-}
-function secondFunction() {
-  console.log("Second thing!");
-}
-firstFunction(secondFunction);
-
-function makeCall(url, callback, callbackprint) {
-  $.ajax({
-    url: url,
-    success: function (response) {
-      console.log("The request succeeded!");
-      callback(response, callbackprint);
-    },
-    error: function (response) {
-      console.log("The request failed!");
-      callback(response);
-    },
+ajaxButton.addEventListener("click", function () {
+  fetch("https://swapi.dev/api/planets/?page=1").then(() => {
+    console.log("API response received");
   });
-}
-function print(results, callback) {
-  console.log(results);
-  callback();
-}
+});
 
-function print2() {
-  console.log("THE LAST JEDI");
-}
-makeCall("https://swapi.dev/api/people/1/", print, print2);
+const displayTeacherName = () => {
+  console.log("Teacher: Aida P.");
+};
 
+const displayAcademyName = () => {
+  console.log("Quinshift academy 2024");
+};
+
+setTimeout(displayTeacherName, 3000); // on hold
+displayAcademyName(); // ne blokira ovu funkciju
+
+
+let counter = 1;
+let intervalId;
+
+const runTimer = () => {
+  console.log(counter);
+  counter++;
+
+  if(counter === 6){
+    clearInterval(intervalId);
+  }
+};
+
+intervalId = setInterval(runTimer, 2000);//346534tk=46464
