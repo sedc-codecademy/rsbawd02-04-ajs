@@ -153,64 +153,106 @@ function getAcademyName() {
 
 // Example 3 - Food ordering
 
-const isSelected = true;
+// const isSelected = true;
 
-function selectItemsFromMenu() {
+// function selectItemsFromMenu() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (isSelected) {
+//         resolve("Items selected!");
+//       } else {
+//         reject("Items not selected");
+//       }
+//     }, 2000);
+//   });
+// }
+
+// function confirmOrder() {
+//   return new Promise((resolve, reject) => {
+//     const answer = confirm("Do you want to confirm order ?");
+
+//     if (answer) {
+//       resolve("Order confirmed!");
+//     } else {
+//       reject("Order not confirmed!");
+//     }
+//   });
+// }
+
+// function orderFood() {
+//   selectItemsFromMenu()
+//     .then(() => {
+//       confirmOrder()
+//         .then(() => {
+//           console.log(
+//             "%cOrder is ready. Enjoy your meal!",
+//             "color:green;font-size:16px;"
+//           );
+//         })
+//         .catch((error) => {
+//           console.log(error);
+//         });
+//     })
+//     .catch((err) => {
+//       console.log("selectItemsFromMenu failed", err);
+//     });
+// }
+
+// async function orderFood2() {
+//   try {
+//     await selectItemsFromMenu();
+//     await confirmOrder();
+
+//     console.log(
+//       "%cOrder is ready. Enjoy your meal!",
+//       "color:green;font-size:16px;"
+//     );
+//   } catch (error) {
+//     console.error("Error has ocurred", error);
+//   }
+// }
+
+// // orderFood();
+// orderFood2();
+const country = "MKD";
+
+function getCountryByCode(code) {
+  return fetch(`https://restcountries.com/v2/alpha/${code}`).then((res) =>
+    res.json()
+  );
+}
+
+function getBorderingCountries() {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (isSelected) {
-        resolve("Items selected!");
-      } else {
-        reject("Items not selected");
-      }
-    }, 2000);
+    getCountryByCode(country)
+      .then((response) => {
+        console.log(response);
+        resolve(response.borders);
+      })
+      .catch((error) => {
+        console.error("Fetching country failed", error);
+        reject("An error has ocurred");
+      });
   });
 }
 
-function confirmOrder() {
-  return new Promise((resolve, reject) => {
-    const answer = confirm("Do you want to confirm order ?");
-
-    if (answer) {
-      resolve("Order confirmed!");
-    } else {
-      reject("Order not confirmed!");
-    }
-  });
-}
-
-function orderFood() {
-  selectItemsFromMenu()
-    .then(() => {
-      confirmOrder()
-        .then(() => {
-          console.log(
-            "%cOrder is ready. Enjoy your meal!",
-            "color:green;font-size:16px;"
-          );
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+function renderCountries() {
+  getBorderingCountries()
+    .then((countries) => {
+      console.log("Bordering countries", countries);
+      countries.forEach((country) => {
+        getCountryByCode(country)
+          .then((response) => {
+            console.log(country, response.name);
+          })
+          .catch(() => {
+            console.error("Api failed...");
+          });
+      });
     })
-    .catch((err) => {
-      console.log("selectItemsFromMenu failed", err);
+    .catch(() => {
+      console.error("An error has ocurred...");
     });
 }
 
-async function orderFood2() {
-  try {
-    await selectItemsFromMenu();
-    await confirmOrder();
-
-    console.log(
-      "%cOrder is ready. Enjoy your meal!",
-      "color:green;font-size:16px;"
-    );
-  } catch (error) {
-    console.error("Error has ocurred", error);
-  }
-}
-
-// orderFood();
-orderFood2();
+renderCountries();
