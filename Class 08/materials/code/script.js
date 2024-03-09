@@ -1,120 +1,185 @@
-function Dog(name, color, age, favoriteFood) {
-  this.name = name === undefined
-      ? "unnamed" : name; // in case there is no name
-  this.color = color;
-  this.age = age;
-  this.hasOwner = false; // default value for all
-  this.favoriteFood = favoriteFood === undefined
-      ? [new Food("Bacon", "Red")] : favoriteFood;
-  this.bark = function () {
-    console.log("BARK BARK BARK");
-  };
-  this.eat = function (food) {
-    this.favoriteFood.forEach(fav =>
-        fav.name.toLowerCase() === food.name.toLowerCase()
-            ? console.log("*My favorite!*") : "");
-    console.log("NOM NOM NOM");
-  }
-}
+// console.log("Test");
+// window.console.log('window test');
 
-let sparky = new Dog("Sparky", "Brown", 1, [
-  new Food("apple", "red"),
-  new Food("Beef", "Red")]);
-let doggy = new Dog(); // will have name unnamed
-sparky.bark();
-doggy.bark();
-console.log(sparky);
-console.log(sparky.favoriteFood[0].name);
-console.log(doggy);
-console.log(doggy);
-sparky.eat(new Food("apple", "green"));
-console.log(new Food("apple", "red") === new Food("apple", "red"))
+// // alert("obavijest!!!");
+// // window.alert('jajaja');
 
-function Food(name, color) {
-  this.name = name;
-  this.color = color;
-}
+// // THIS
+// console.log('root', this);
 
+// function firstFunction() {
+//   console.log('firstFunctions -> this', this);
+// }
 
-// EXERCISE
-function Academy(name, students, subjects, start, end) {
-  this.name = name;
-  this.students = students === undefined ? [] : students;
-  this.subjects = subjects === undefined ? [] : subjects;
-  this.start = new Date(start);
-  this.end = new Date(end);
-  this.numberOfClasses = this.subjects.length * 10;
-  this.printStudents = function () {
-    this.students.forEach(student => {
-      console.log(student);
-    })
-  };
-  this.printSubjects = function () {
-    this.subjects.forEach(subject => {
-      console.log(subject);
-    });
-  }
-}
+// firstFunction();
+// // window.firstFunction();
 
-function Subject(title, isElective, academy, students) {
-  this.title = title;
-  this.numberOfClasses = 10;
-  this.isElective = isElective;
-  this.academy = academy;
-  this.students = students;
-  this.overideClasses = function (classes) {
-    this.numberOfClasses = classes <= 3
-        ? console.log("error") : classes;
-  }
-}
+// const student = {
+//   name: 'Niko Nikic',
+//   displayThis: function () {
+//     console.log('this inside student => ', this);
+//   }
+// }
 
-function Student(firstName, lastName, age) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.age = age;
-  this.completedSubjects = [];
-  this.academy = null;
-  this.currentSubject = null;
-  this.startAcademy = function (someAcademy) {
-    this.academy = someAcademy;
-    someAcademy.students.push(this);
-  }
-  this.startSubject = function (someSubject) {
-    if (this.academy === null) {
-      console.log("You can't enrol on a subject without academy!");
-    } else if (this.academy.subjects
-        .filter(sub => sub.title === someSubject.title) === []) {
-      console.log("There is no subject like that in your academy!");
-    } else if (this.currentSubject !== null) {
-      this.completedSubjects.push(this.currentSubject);
-      this.currentSubject = someSubject;
-      someSubject.students.push(this);
+// student.displayThis();
+
+// function Student(name, age) {
+//   this.name = name || '---';
+//   this.age = age || 0;
+// }
+
+// const st1 = new Student('John', 20);
+// console.log(st1.name);//John
+
+// OBJECT DESTRUCTRING
+// const myDog = {
+//   name: "Bugsy",
+//   color: "Black",
+//   age: 4,
+//   vacinations: {
+//     vacination1: "12.12.2022.",
+//     vacination2: "09.03.2023.",
+//   },
+//   bark: function () {
+//     console.log("BARK BARK BARK!");
+//   },
+// };
+
+// const dog2 = {
+//   name: "Rex",
+//   color: "Gray",
+//   age: 2,
+//   owner: "Ana",
+// };
+
+// const { name, color } = myDog;
+
+// // console.log(`Dog ${myDog.name} has ${myDog.color} color.`);
+// console.log(`Dog ${name} has ${color} color.`);
+
+// function displayOwner({ owner = "NO OWNER" }) {
+//   // const { owner = 'NO OWNER' } = dog;
+//   console.log(`Owner is ${owner}`);
+// }
+
+// displayOwner(dog2);
+// displayOwner(myDog);
+
+// console.log(myDog.owner); // undefined
+
+// const book = {
+//   title: "The Great Gatsby",
+//   author: "F. Scott Fitzgerald",
+//   publicationYear: 1925,
+//   genre: "Fiction",
+//   ratings: {
+//     goodreads: 4.0,
+//     amazon: 4.5,
+//     barnesAndNoble: 4.2,
+//   },
+// };
+
+// const average = ((book.ratings.goodreads + book.ratings.amazon + book.ratings.barnesAndNoble)/3).toFixed(2);
+// console.log(`${book.title} (${book.author}) has ${average} average rating`);
+// const title = book.title;
+// const { title } = book;
+
+// console.log(title);
+// console.log(book);
+
+// const {
+//   title = '---',
+//   author = '---',
+//   ratings: { goodreads, amazon, barnesAndNoble },
+// } = book;
+
+// const average = ((goodreads + amazon + barnesAndNoble) / 3).toFixed(2);
+// console.log(`${title} (${author}) has ${average} average rating`);
+
+// ARRAY DESTRUCTRING
+
+// const subjects = ["Math", "Biology", "Chemistry", "Phisics"];
+// // const firstSubject = subjects[0];//Math
+// const [firstSubject, secondSubject, , fourthSubject] = subjects;
+
+// console.log(`First subject is ${firstSubject}`);
+// console.log(`Second subject is ${secondSubject}`);
+// console.log(`Fourth subject is ${fourthSubject}`);
+
+// const colorTypes = ["RGB", "HEX", "HSL"];
+// const colorValues = ["191, 34, 183", "#bf22b7", "303°, 70%, 44%"];
+// // RGB - 191, 34, 183
+// // HEX - #bf22b7
+
+// const [rgb, hex, hsl] = colorTypes;
+// const [rgbValue, hexValue, hslValue] = colorValues;
+
+// console.log(`${rgb} - ${rgbValue}`);
+// console.log(`${hex} - ${hexValue}`);
+// console.log(`${hsl} - ${hslValue}`);
+
+// EXAMPLE
+
+function Car(brand, model, year, price) {
+  this.brand = brand || "---";
+  this.model = model || "---";
+  this.year = Number(year) || 0;
+  this.price = Number(price) || 0;
+  this.owners = [];
+
+  this.displayOwners = function() {
+    if(this.owners.length) {
+      console.log('Owners: ');
+      this.owners.forEach(({fullName}) => {
+        console.log(fullName);
+      });
     } else {
-      this.currentSubject = someSubject;
-      someSubject.students.push(this);
+      console.log("This car is brand new - no previous owners.");
     }
   }
+
+  this.displayDetails = function () {
+    console.log(`${this.brand} ${this.model}`);
+    console.log(`Year: ${this.year}`);
+    console.log(`Price: ${this.price} EUR`);
+    this.displayOwners();
+  };
+
+  this.addOwner = function ({ id, fullName }) {
+    this.owners.push({id, fullName});
+  };
 }
 
-let javascript = new Subject("javascript", false, undefined, []);
-let html = new Subject("html", false, undefined, []);
-let cSharp = new Subject("C#", false, undefined, []);
-let codeCademy = new Academy("Code", [], [javascript, html, cSharp], "12/10/2019", "12/10/2020");
-let bob = new Student("Bob", "Bobsky", 35);
-let jill = new Student("Jill", "Riely", 29);
-// console.log(codeCademy);
-// console.log(javascript);
-// console.log(html);
-// console.log(cSharp);
-// console.log(bob);
-// console.log(jill);
-// codeCademy.printStudents();
-// codeCademy.printSubjects();
-// cSharp.overideClasses(8);
-bob.startAcademy(codeCademy);
-// bob.startSubject(javascript);
-bob.startSubject(javascript);
-bob.startSubject(cSharp);
-bob.startSubject(html);
-console.log(bob);
+const car1 = new Car("VW", "Golf VII", 2019, 15000);
+const car2 = new Car("Audi", "A3", "2022", 24000);
 
+const person1 = {
+  id: 1,
+  fullName: "Aida Pirusic",
+  age: 12,
+  favFood: ["chocolate", "water"],
+};
+
+const person2 = {
+  id: 2,
+  fullName: "Miroslav Popovic",
+  age: 12,
+  favFood: ["meat", "orange"],
+};
+
+const person3 = {
+  id: 3,
+  fullName: "Almir Vuk",
+  age: 12,
+  favFood: ["carrot", "water"],
+};
+
+car1.addOwner(person1);
+car1.addOwner(person2);
+car1.addOwner(person3);
+
+car1.displayDetails();
+console.log("\n");
+car2.displayDetails();
+
+// 2 456.45
