@@ -8,13 +8,13 @@
 // // res.json() every time we make fetch call
 // const fetchHelper = (url) => fetch(url).then((res) => res.json());
 
-// const fetchCatFact = () => fetchHelper("https://meowfacts.herokuapp.com/");
+// const fetchFact = () => fetchHelper("https://meowfacts.herokuapp.com/");
 
-// const fetchCatImage = () => fetchHelper("https://random.dog/woof.json");
+// const fetchImage = () => fetchHelper("https://random.dog/woof.json");
 
-// const getCatFact = () =>
+// const getFact = () =>
 //   new Promise((resolve, reject) => {
-//     fetchCatFact()
+//     fetchFact()
 //       .then((response) => {
 //         const fact = response.data[0];
 //         resolve(fact);
@@ -31,9 +31,9 @@
 // };
 
 // const renderFact = () => {
-//   getCatFact()
+//   getFact()
 //     .then((fact) => {
-//       fetchCatImage()
+//       fetchImage()
 //         .then((imageResponse) => {
 //           displayFact(fact);
 //           displayImage(imageResponse);
@@ -64,14 +64,14 @@ const fetchHelper = async (url) => {
   return res.json();
 };
 
-const fetchCatFact = () => fetchHelper("https://meowfacts.herokuapp.com/");
+const fetchFact = () => fetchHelper("https://meowfacts.herokuapp.com/");
 
-const fetchCatImage = () => fetchHelper("https://random.dog/woof.json");
+const fetchImage = () => fetchHelper("https://random.dog/woof.json");
 
-const getCatFact = () =>
+const getFact = () =>
   new Promise(async (resolve, reject) => {
     try {
-      const response = await fetchCatFact();
+      const response = await fetchFact();
       const fact = response.data[0];
       resolve(fact);
     } catch (error) {
@@ -89,8 +89,8 @@ const displayImage = ({ url }) => {
 
 const renderFact = async () => {
   try {
-    const fact = await getCatFact();
-    const imageResponse = await fetchCatImage();
+    const fact = await getFact();
+    const imageResponse = await fetchImage();
 
     displayFact(fact);
     displayImage(imageResponse);
