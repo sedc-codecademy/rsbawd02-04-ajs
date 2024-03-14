@@ -102,43 +102,110 @@
 // console.log(laptop.name);
 // laptop.info();
 
-function Animal(id, species) {
-  this.id = Number(id) || 0;
-  this.species = species || "---";
+// function Animal(id, species) {
+//   this.id = Number(id) || 0;
+//   this.species = species || "---";
 
-  this.info = () => {
-    console.log(`Id: ${this.id}`);
-    console.log(`Species: ${this.species}`);
-  };
+//   this.info = () => {
+//     console.log(`Id: ${this.id}`);
+//     console.log(`Species: ${this.species}`);
+//   };
+// }
+
+// function DomesticAnimal(id, species, name, age, vacinationDate) {
+//   Object.setPrototypeOf(this, new Animal(id, species));
+
+//   this.name = name || "---";
+//   this.age = Number(age);
+//   this.vacinationDate = vacinationDate || "";
+
+//   this.displayDetails = () => {
+//     Object.getPrototypeOf(this).info();
+
+//     console.log(`Name: ${this.name}`);
+//     console.log(`Age: ${this.age}`);
+//     console.log(`Vacination date: ${this.vacinationDate}`);
+//   };
+// }
+
+// function Cat(id, species, name, age, vacinationDate, breed) {
+//   Object.setPrototypeOf(this, new DomesticAnimal(id, species, name, age, vacinationDate));
+
+//   this.breed = breed || '---';
+
+//   this.displayInformation = () => {
+//     Object.getPrototypeOf(this).displayDetails();
+
+//     console.log(`Breed: ${this.breed}`);
+//   };
+// }
+
+// const cat = new Cat(1, 'cat', 'Kitty', 2, '14.3.2024.', 'Persian');
+// cat.displayInformation();
+
+
+// EXERCISE SOLUTION
+function Person(first, last, age) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.getFullName = function () {
+    console.log(`${this.firstName} ${this.lastName}`);
+  }
 }
 
-function DomesticAnimal(id, species, name, age, vacinationDate) {
-  Object.setPrototypeOf(this, new Animal(id, species));
-
-  this.name = name || "---";
-  this.age = Number(age);
-  this.vacinationDate = vacinationDate || "";
-
-  this.displayDetails = () => {
-    Object.getPrototypeOf(this).info();
-
-    console.log(`Name: ${this.name}`);
-    console.log(`Age: ${this.age}`);
-    console.log(`Vacination date: ${this.vacinationDate}`);
-  };
+function Student(academyName, id, first, last, age) {
+  Object.setPrototypeOf(this, new Person(first, last, age));
+  this.academyName = academyName;
+  this.studentId = id;
+  this.study = function () {
+    console.log(`The studet ${this.firstName} is studying in ${this.academyName} academy!`);
+  }
 }
 
-function Cat(id, species, name, age, vacinationDate, breed) {
-  Object.setPrototypeOf(this, new DomesticAnimal(id, species, name, age, vacinationDate));
+let student1 = new Student("Code", 2, "Pepi", "Perovski", 29);
+let student2 = new Student("Design", 4, "Viksa", "Viktorovski", 21);
+// console.log(student1);
+// console.log(student2);
+// student1.getFullName();
+// student1.study();
 
-  this.breed = breed || '---';
-
-  this.displayInformation = () => {
-    Object.getPrototypeOf(this).displayDetails();
-
-    console.log(`Breed: ${this.breed}`);
-  };
+function CodeStudent(id, first, last, age) {
+  Object.setPrototypeOf(this, new Student("Code", id, first, last, age))
+  this.hasIndividualProject = false;
+  this.hasGroupProject = false;
+  this.doProject = function (type) {
+    if (type === "individual") this.hasIndividualProject = true;
+    if (type === "group") this.hasGroupProject = true;
+  }
 }
 
-const cat = new Cat(1, 'cat', 'Kitty', 2, '14.3.2024.', 'Persian');
-cat.displayInformation();
+function DesignStudent(first, sOfMonth, id, last, age) {
+  Object.setPrototypeOf(this, new Student("Design", id, first, last, age));
+  this.isStudentOfTheMonth = sOfMonth;
+  this.attendAdobeExam = function () {
+    console.log(`This student ${this.firstName} is taking an adobe exam!`);
+  }
+}
+
+function NetworkStudent(first, id, last, age, part) {
+  Object.setPrototypeOf(this, new Student("Network", id, first, last, age));
+  this.academyPart = part;
+  this.attendCiscoExam = function () {
+    console.log(`This student ${this.firstName} is taking a cisco exam!`);
+  }
+}
+
+Person.prototype.checkForAcademy = function (student) {
+  console.log(student.academyName);
+}
+
+let student3 = new CodeStudent(25, "deko", "dekovski", 28);
+let student4 = new DesignStudent("Bobi", true, 9, "Basmiegajle", 19);
+let student5 = new NetworkStudent("Igor", 23, "Igorovski", 32, 2);
+
+console.log(student3);
+console.log(student4);
+console.log(student5);
+
+student3.checkForAcademy(student4);
