@@ -11,6 +11,7 @@
 // }
 
 // const person = new Person('1', 'Aida Pirusic', 'female');
+
 // const student = Object.create(person);
 // student.academyName = 'Qinshift Academy';
 // student.academyYear = 1;
