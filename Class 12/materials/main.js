@@ -8,3 +8,7 @@ console.log("even numbers", getEvenNumbers(numbers));
 console.log("odd numbers", getOddNumbers(numbers));
 console.log("double digit numbers", getDoubleDigitsNumbers(numbers));
 console.log("max number is ", utilsModule.getMaxNumber(numbers));
+
+// check if something is array
+console.log(Array.isArray(numbers));
+console.log(Array.isArray({ yyy: 111 }));
