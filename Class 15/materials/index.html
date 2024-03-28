@@ -13,6 +13,7 @@
     <h2>NPM</h2>
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="node_modules/validator/validator.js"></script>
+    <script src="node_modules/pluralize/pluralize.js"></script>
     <script src="./src/script.js" defer type="module"></script>
 
     <div class="container-fluid">
@@ -39,6 +40,16 @@
 
             <div class="alert" role="alert" id="passwordResponse">
             </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter word" id="wordInput">
+                <button type="button" class="btn btn-primary" id="pluralizeWordBtn">Pluralize word</button>
+            </div>
+
+            <div id="pluralizedWord"></div>
+
         </div>
     </div>
 
